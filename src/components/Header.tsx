@@ -35,7 +35,7 @@ export default function Header(){
                             placeholder="Search"
                             />
                         </div>
-                        <button className="h-9 px-4 rounded-md bg-blue-700/90 hover:bg-blue-600/80 text-white text-sm font-medium shadow-sm ring-1 ring-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/20 transition">
+                        <button className="h-9 px-4 rounded-md bg-blue-700/90 hover:bg-blue-600/50 text-white text-sm font-medium shadow-sm ring-1 ring-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/20 transition">
                             New Monitor
                         </button>
                         <button>
