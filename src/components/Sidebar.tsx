@@ -9,13 +9,13 @@ export default function Sidebar(){
 
     return(
         <aside className="
-            relative w-60 shrink-0
+            relative w-50 shrink-0
             after:content-[''] after:absolute after:top-0 after:bottom-0 after:right-0
             after:w-px after:bg-white/10
             px-6
         ">
             <nav>
-                <ul className="pt-3 md:pt-4">
+                <ul className="mt-3 md:mt-4">
                     {navItems.map(({label, href, icon: Icon}) => {
                         const active = pathname.startsWith(href);
                         return(
