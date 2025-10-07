@@ -27,9 +27,25 @@ export default function RightBar(){
             </div>
             {/* filters section */}
             <div>
+                <span>
+                    Filters
+                </span>
                 {/* type filter */}
                 <div>
-
+                    <span>
+                        Type
+                    </span>
+                    <div>
+                        {/* HTTP Request */}
+                        <input type='checkbox' id='http'/>
+                        <label>HTTP</label> 
+                        {/* Ping Request */}
+                        <input type='checkbox' id='ping'/>
+                        <label>Ping</label>
+                        {/* Hook Request */}
+                        <input type='checkbox' id='hook'/>
+                        <label>Hook</label>
+                    </div>
                 </div>
                 {/* status filter */}
                 <div>
