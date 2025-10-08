@@ -1,3 +1,4 @@
+import { TAGS } from '@/data/tags';
 import { ListFilter } from 'lucide-react';
 
 export default function RightBar(){
@@ -26,8 +27,8 @@ export default function RightBar(){
                 </div>
             </div>
             {/* filters section */}
-            <div>
-                <span>
+            <div className='flex-col mt-5 md:mt-6'>
+                <span className='text-lg'>
                     Filters
                 </span>
                 {/* type filter */}
@@ -37,24 +38,53 @@ export default function RightBar(){
                     </span>
                     <div>
                         {/* HTTP Request */}
-                        <input type='checkbox' id='http'/>
-                        <label>HTTP</label> 
+                        <label>
+                            <input type='checkbox' />
+                            <span>HTTP</span>
+                        </label>
                         {/* Ping Request */}
-                        <input type='checkbox' id='ping'/>
-                        <label>Ping</label>
+                        <label>
+                            <input type='checkbox' />
+                            <span>Ping</span>
+                        </label>
                         {/* Hook Request */}
-                        <input type='checkbox' id='hook'/>
-                        <label>Hook</label>
+                        <label>
+                            <input type='checkbox' />
+                            <span>Hook</span>
+                        </label>
                     </div>
                 </div>
                 {/* status filter */}
                 <div>
-
+                    <span>
+                        Status
+                    </span>
+                    <div>
+                        <label>
+                            <input type='checkbox' />
+                            <span>Up</span>
+                        </label>
+                        <label>
+                            <input type='checkbox' />
+                            <span>Down</span>
+                        </label>
+                    </div>
                 </div>
                 {/* tags filter */}
                 <div>
-                    
+                    {TAGS.map((tag) => (
+                        <label key={tag.id}>
+                            <input type='checkbox' />
+                            <span>{tag.name}</span>
+                        </label>
+                    ))}
                 </div>
+            </div>
+            {/* apply button */}
+            <div>
+                <button>
+                    Apply
+                </button>
             </div>
         </aside>
     )
