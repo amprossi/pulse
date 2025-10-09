@@ -1,9 +1,11 @@
 import { TAGS } from '@/data/tags';
+import { Checkbox } from './Checkbox';
 import { ListFilter } from 'lucide-react';
 
 export default function RightBar(){
     return(
         <aside className="
+            flex flex-col h-screen
             relative w-80 shrink-0
             before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0
             before:w-px before:bg-white/10
@@ -32,57 +34,48 @@ export default function RightBar(){
                     Filters
                 </span>
                 {/* type filter */}
-                <div>
-                    <span>
+                <div className='mt-4 md:mt-5'>
+                    <span className='text-neutral-400'>
                         Type
                     </span>
-                    <div>
+                    <div className='flex flex-col gap-1.5 mt-1'>
                         {/* HTTP Request */}
-                        <label>
-                            <input type='checkbox' />
-                            <span>HTTP</span>
-                        </label>
+                        <Checkbox label='HTTP'/>
                         {/* Ping Request */}
-                        <label>
-                            <input type='checkbox' />
-                            <span>Ping</span>
-                        </label>
+                        <Checkbox label='Ping'/>
                         {/* Hook Request */}
-                        <label>
-                            <input type='checkbox' />
-                            <span>Hook</span>
-                        </label>
+                        <Checkbox label='Hook'/>
                     </div>
                 </div>
                 {/* status filter */}
-                <div>
-                    <span>
+                <div className='mt-4 md:mt-5'>
+                    <span className='text-neutral-400'>
                         Status
                     </span>
-                    <div>
-                        <label>
-                            <input type='checkbox' />
-                            <span>Up</span>
-                        </label>
-                        <label>
-                            <input type='checkbox' />
-                            <span>Down</span>
-                        </label>
+                    <div className='flex flex-col gap-1.5 mt-1'>
+                        <Checkbox label='Up'/>
+                        <Checkbox label='Down'/>
                     </div>
                 </div>
                 {/* tags filter */}
-                <div>
-                    {TAGS.map((tag) => (
-                        <label key={tag.id}>
-                            <input type='checkbox' />
-                            <span>{tag.name}</span>
-                        </label>
-                    ))}
+                <div className='mt-4 md:mt-5'>
+                    <span className='text-neutral-400'>
+                        Tags
+                    </span>
+                    <div className='flex flex-col gap-1.5 mt-1'>
+                        {TAGS.map((tag) => (
+                            <Checkbox key={tag.id} label={tag.name}/>
+                        ))}
+                    </div>
                 </div>
             </div>
             {/* apply button */}
-            <div>
-                <button>
+            <div className='mt-auto mb-5'>
+                <button className='
+                w-full py-2 border border-white/10 bg-white/5 
+                rounded-lg text-neutral-300 
+                hover:bg-white/10 transition-colors
+                '>
                     Apply
                 </button>
             </div>
