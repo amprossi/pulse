@@ -10,7 +10,6 @@ export default function Header(){
             after:left-6 after:right-0 
             after:h-px after:bg-white/10
             "
-
         >
             <nav>
                 <div className="flex items-center justify-between">

@@ -24,3 +24,26 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities{
+  .scrollbar-custom{
+    /* Gecko Motor*/
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
+  
+    /* Webkit Motor */
+    &::-webkit-scrollbar{
+      width:8px;
+    }
+    &::-webkit-scrollbar-track{
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: rgba(255,255,255,0.15);
+      border-radius: 9999px;
+    }
+    &:hover::-webkit-scrollbar-thumb{
+      background-color: rgba(255,255,255,0.25);
+    }
+  }
+}
