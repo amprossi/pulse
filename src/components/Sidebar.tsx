@@ -9,38 +9,43 @@ export default function Sidebar(){
 
     return(
         <aside className="
-            flex flex-col overflow-y-auto
+            flex flex-col
             relative w-50 shrink-0
             after:content-[''] after:absolute after:top-0 after:bottom-0 after:right-0
             after:w-px after:bg-white/10
-            px-6
+            pl-6
         ">
-            <nav>
-                <ul className="mt-3 md:mt-4">
-                    {navItems.map(({label, href, icon: Icon}) => {
-                        const active = pathname.startsWith(href);
-                        return(
-                            <li key={href}>
-                                <Link
-                                href= {href}
-                                aria-current={active ? "page" : undefined}
-                                className={[
-                                    "flex items-center gap-3 h-9 px-3 rounded-md text-sm transition-colors",
-                                    active
-                                    ? "bg-white/10 text-white"
-                                    : "text-neutral-400 hover:bg-white/5 hover:text-white",
-                                ].join(" ")}
-                                >
-                                    <Icon 
-                                    className="h-5 w-5"
-                                    />
-                                    <span> {label} </span>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </nav>
+            <div className="
+            overflow-y-auto
+            scrollbar-custom
+            ">
+                <nav>
+                    <ul className="mt-3 md:mt-4">
+                        {navItems.map(({label, href, icon: Icon}) => {
+                            const active = pathname.startsWith(href);
+                            return(
+                                <li key={href}>
+                                    <Link
+                                    href= {href}
+                                    aria-current={active ? "page" : undefined}
+                                    className={[
+                                        "flex items-center gap-3 h-9 px-3 rounded-md text-sm transition-colors",
+                                        active
+                                        ? "bg-white/10 text-white"
+                                        : "text-neutral-400 hover:bg-white/5 hover:text-white",
+                                    ].join(" ")}
+                                    >
+                                        <Icon 
+                                        className="h-5 w-5"
+                                        />
+                                        <span> {label} </span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+            </div>
         </aside>
     )
 }

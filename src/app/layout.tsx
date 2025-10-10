@@ -33,12 +33,7 @@ export default function RootLayout({
           <Sidebar />
           <main className="
             flex-1 overflow-y-auto 
-            [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,.15)_transparent]
-            [&::-webkit-scrollbar]:w-2
-            [&::-webkit-scrollbar-track]:bg-transparent
-            [&::-webkit-scrollbar-thumb]:bg-white/15
-            [&::-webkit-scrollbar-thumb]:rounded-full
-            hover:[&::-webkit-scrollbar-thumb]:bg-white/25
+            scrollbar-custom
             ">
             {children}
           </main>

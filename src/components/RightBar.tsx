@@ -5,8 +5,9 @@ import { ListFilter } from 'lucide-react';
 export default function RightBar(){
     return(
         <aside className="
-            flex flex-col
+            flex flex-col overflow-y-auto
             relative w-80 shrink-0
+            scrollbar-custom
             before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0
             before:w-px before:bg-white/10
             px-6
@@ -70,7 +71,7 @@ export default function RightBar(){
                 </div>
             </div>
             {/* apply button */}
-            <div className='mt-auto mb-5'>
+            <div className='mt-auto mb-5 pt-5'>
                 <button className='
                 w-full py-2 border border-white/10 bg-white/5 
                 rounded-lg text-neutral-300 
