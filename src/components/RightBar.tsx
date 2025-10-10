@@ -5,7 +5,7 @@ import { ListFilter } from 'lucide-react';
 export default function RightBar(){
     return(
         <aside className="
-            flex flex-col h-screen
+            flex flex-col
             relative w-80 shrink-0
             before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0
             before:w-px before:bg-white/10

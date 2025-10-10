@@ -29,9 +29,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <div className="flex min-h-screen">
+        <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
           <Sidebar />
-          <main>
+          <main className="
+            flex-1 overflow-y-auto 
+            [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,.15)_transparent]
+            [&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-white/15
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            hover:[&::-webkit-scrollbar-thumb]:bg-white/25
+            ">
             {children}
           </main>
           <RightBar />
