@@ -1,4 +1,5 @@
 import {Menu, Search, Bell} from "lucide-react";
+import SidebarToggle from "./SidebarToggle";
 
 export default function Header(){
     return(
@@ -15,9 +16,9 @@ export default function Header(){
                 <div className="flex items-center justify-between">
                     {/* sidebar button & name */}
                     <div className="flex items-center gap-2">
-                        <button className="p-2 rounded-md hover:bg-neutral-800/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500">
+                        <SidebarToggle>
                             <Menu className="text-neutral-500"/>
-                        </button>
+                        </SidebarToggle>
                         <a href="/">
                             <span className="font-medium text-base md:text-lg tracking-tight">
                                 Pulse
