@@ -2,7 +2,7 @@ import { TAGS } from '@/data/tags';
 import { Checkbox } from './Checkbox';
 import { ListFilter, SlidersHorizontal, List, LayoutGrid } from 'lucide-react';
 
-export default function RightBar(){
+export default function FilterBar(){
     return(
         <aside className="
             flex flex-col overflow-y-auto
