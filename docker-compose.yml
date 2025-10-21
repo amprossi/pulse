@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: pulse_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-pulse}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-pulse}"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: pulse_web
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: 3000
+
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER:-postgres}
+      DB_PASS: ${POSTGRES_PASSWORD:-postgres}
+      DB_NAME: ${POSTGRES_DB:-pulse}
+
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - node-modules:/app/node_modules
+    command: ["npm", "run", "dev"]
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  node-modules:
