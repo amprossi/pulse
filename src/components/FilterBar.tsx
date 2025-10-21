@@ -1,8 +1,8 @@
 import { TAGS } from '@/data/tags';
 import { Checkbox } from './Checkbox';
-import { ListFilter } from 'lucide-react';
+import { ListFilter, SlidersHorizontal, List, LayoutGrid } from 'lucide-react';
 
-export default function RightBar(){
+export default function FilterBar(){
     return(
         <aside className="
             flex flex-col overflow-y-auto
@@ -71,15 +71,30 @@ export default function RightBar(){
                 </div>
             </div>
             {/* apply button */}
-            <div className='mt-auto mb-5 pt-5'>
-                <button className='
-                w-full py-2 border border-white/10 bg-white/5 
-                rounded-lg text-neutral-300 
-                hover:bg-white/10 transition-colors
-                '>
-                    Apply
-                </button>
+            <div className='flex gap-3 mt-auto mb-5 pt-5'>
+                <div className='flex-1'>
+                    <button className='
+                    w-full py-2 border border-white/10 bg-white/5
+                    rounded-lg text-neutral-300
+                    hover:bg-white/10 transition-colors 
+                    '>
+                        Cancel
+                    </button>
+                </div>
+                <div className='flex-1'>
+                    <button className='
+                    w-full py-2 
+                    rounded-lg text-white
+                    border border-white/10 bg-blue-700/90
+                    hover:bg-blue-600/50 shadow-sm transition
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-white/20
+                    ring-1 ring-white/10
+                    '>
+                        Apply
+                    </button>
+                </div>
             </div>
+            
         </aside>
     )
 }
