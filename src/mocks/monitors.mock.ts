@@ -1,13 +1,6 @@
-export type MonitorMock = {
-    id: string;
-    name: string;
-    status: "up" | "down"
-    latencyMs: number;
-    updatedAt: string;
-    tags?: string[];
-}
+import { Monitor } from "@/data/monitors";
 
-export const monitorsMock: MonitorMock[] = [
+export const monitorsMock: Monitor[] = [
     {
         id: "1",
         name: "API Mercado Bitcoin",

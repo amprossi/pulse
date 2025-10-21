@@ -29,7 +29,6 @@ export default function SidebarToggle({children}: PropsWithChildren){
         <button
         type="button"
         onClick={toggle}
-        aria-label={state === "expanded" ? "Minimize" : "Expand"}
         className="p-2 rounded-md hover:bg-neutral-800/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
         >
             {children ?? (state === "expanded"? "«" : "»")}
