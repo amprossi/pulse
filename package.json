@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prisma:migrate":"dotenv -e .env -- prisma migrate dev"
+    "prisma:migrate":"dotenv -e .env -- prisma migrate dev",
+    "postinstall": "prisma generate",
+    "predev": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
