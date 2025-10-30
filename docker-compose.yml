@@ -5,38 +5,60 @@ services:
     image: postgres:16
     container_name: pulse_db
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-pulse}
+    env_file:
+      - ./api/.env
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-pulse}"]
+      test: ["CMD-SHELL", "pg_isready -U \"$POSTGRES_USER\" -d \"$POSTGRES_DB\" -h localhost || exit 1"]
       interval: 3s
       timeout: 3s
       retries: 10
       start_period: 30s
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    container_name: pulse_api
+    restart: unless-stopped
+    env_file:
+      - ./api/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./api:/app
+      - node-modules:/app/node_modules
+    command: >
+      sh -lc "npm ci &&
+              npx prisma generate &&
+              (npx prisma migrate deploy || npx prisma db push) &&
+              npm run dev"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:4000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   web:
     build:
       context: .
       dockerfile: Dockerfile.dev
     container_name: pulse_web
+    restart: unless-stopped
+    env_file:
+      - ./.env
     depends_on:
       db:
         condition: service_healthy
-    environment:
-      NODE_ENV: development
-      HOST: 0.0.0.0
-      PORT: 3000
-
-      DATABASE_URL: "postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:${DB_PORT:-5432}/${POSTGRES_DB:-pulse}?schema=public"
-
-      CHOKIDAR_USEPOLLIN: true
-      WATCHPACK_POLLING: true
+      api:
+        condition: service_healthy
     ports:
       - "3000:3000"
     volumes:
@@ -44,10 +66,7 @@ services:
       - node-modules:/app/node_modules
     command: >
       sh -lc "npm ci &&
-              npx prisma generate &&
-              (npx prisma migrate deploy || npx prisma db push) &&
               npm run dev"
-    restart: unless-stopped
 
 volumes:
   db-data:
