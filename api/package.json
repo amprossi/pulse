@@ -1,0 +1,26 @@
+{
+  "name": "pulse-api",
+  "type": "module",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "tsc",
+    "build": "node dist/server.js",
+    "prisma:generate": "dotenv -e .env -- prisma generate",
+    "prisma-migrate:dev": "dotenv -e .env --prisma migrate dev",
+    "prisma-migrate:deploy": "dotenv -e .env --prisma migrate deploy",
+    "postinstall": "dotenv -e .env -- prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.9.2",
+    "prisma": "^6.18.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
